@@ -21,9 +21,10 @@ class moderation(commands.Cog):
     async def warn(self, ctx):
         pass
 
-    @commands.command()
-    async def clear(self, ctx, amount=10):
-        pass
+    @client.command()
+    @commands.has_permissions(manage_messages=True)
+    async def clear(ctx, amount=1000):
+        await ctx.channel.purge(limit=amount)
 
 def setup(client):
     client.add_cog(moderation(client))
